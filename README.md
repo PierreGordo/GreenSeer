@@ -4,6 +4,4 @@
 	<p><em>Greenseer - a system for total informational supremacy.</em><p>
 </div>
 
-
-# GreenSeer
-GreenSeer system for total informational supremacy.
+To be done.
