@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # postgresql database
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secretpassword
+      POSTGRES_DB: my_database
+    ports:
+      - "5432:5432" # maps ports
+    volumes:
+      - pgdata:/var/lib/postgresql/data # saves data
+
+  # Backend
+  backend:
+    build: . # looks for build file
+    ports:
+      - "8080:8080" 
+    environment:
+      # connect db
+      DATABASE_URL: postgres://admin:secretpassword@db:5432/my_database
+    depends_on:
+      - db # database has to start before backend
+
+# persistent storage
+volumes:
+  pgdata:
