@@ -50,6 +50,8 @@ async fn main() {
         .route("/", get(handlers::handler_app))
         //logout route
         .route("/logout", get(handlers::handler_logout))
+        //yes this is not exactly bright, but it'll do for now
+       	.route("/login", get(handlers::handler_logout))
         //so that styling works - my css and config.js are in the static folder
         .nest_service("/static", ServeDir::new("static"))
         .with_state(app_state);
